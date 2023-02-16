@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python get started for Network Engineer - RamaLabs</title><meta name="Description" content="Code, Cloud, Networking, Business and Life"><meta property="og:title" content="Python get started for Network Engineer" />
+<meta property="og:description" content="Init sudo apt install python3-pip python3 -m venv env source bin/activate requirements.tx 1 2 3 4 5 # create pip3 freeze --local &gt; requirements.txt # load pip3 install -r requirements.txt Snippets: SSH - Paramiko 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import re import paramiko import time # \ndisplay ip interface brief | no-more iplist = [&#39;172.16.0.21&#39;, &#39;172.16.0.25&#39;, &#39;172.16.0.22&#39;] for host in iplist: cmd = &#39;display int desc | no-more\ndisplay ip int br | no-more&#39; promt = &#39;N&#39; ssh_client = paramiko." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ramalabs.my.id/python-cheatsheet/" /><meta property="og:image" content="https://ramalabs.my.id/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-16T05:42:43+07:00" />
+<meta property="article:modified_time" content="2023-02-16T10:02:12+07:00" /><meta property="og:site_name" content="Ramalabs" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://ramalabs.my.id/logo.png"/>
+
+<meta name="twitter:title" content="Python get started for Network Engineer"/>
+<meta name="twitter:description" content="Init sudo apt install python3-pip python3 -m venv env source bin/activate requirements.tx 1 2 3 4 5 # create pip3 freeze --local &gt; requirements.txt # load pip3 install -r requirements.txt Snippets: SSH - Paramiko 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import re import paramiko import time # \ndisplay ip interface brief | no-more iplist = [&#39;172.16.0.21&#39;, &#39;172.16.0.25&#39;, &#39;172.16.0.22&#39;] for host in iplist: cmd = &#39;display int desc | no-more\ndisplay ip int br | no-more&#39; promt = &#39;N&#39; ssh_client = paramiko."/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://ramalabs.my.id/python-cheatsheet/" /><link rel="next" href="https://ramalabs.my.id/how-to-create-custom-service-systemd/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python get started for Network Engineer",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/ramalabs.my.id\/python-cheatsheet\/"
+        },"genre": "posts","wordcount":  709 ,
+        "url": "https:\/\/ramalabs.my.id\/python-cheatsheet\/","datePublished": "2023-02-16T05:42:43+07:00","dateModified": "2023-02-16T10:02:12+07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Hidayah Ramadlana"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="RamaLabs">Ramalabs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="RamaLabs">Ramalabs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python get started for Network Engineer</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="mailto:hidayah.ramadlana@gmail.com" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Hidayah Ramadlana</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-16">2023-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;709 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#init">Init</a>
+          <ul>
+            <li><a href="#requirementstx">requirements.tx</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#snippets">Snippets:</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ssh---paramiko">SSH - Paramiko</a></li>
+            <li><a href="#ssh---netmiko---send_command-read">SSH - Netmiko - send_command (Read)</a></li>
+            <li><a href="#ssh---netmiko---send_config_set-write">SSH - Netmiko - send_config_set (Write)</a></li>
+            <li><a href="#ssh---netmiko-expect_string">SSH - Netmiko expect_string</a></li>
+            <li><a href="#ssh---netmiko-send_command_timing-handle-prompt">SSH - Netmiko send_command_timing (Handle Prompt)</a></li>
+            <li><a href="#regex">Regex</a></li>
+            <li><a href="#ntc--textfsm">NTC / TextFSM</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="init">Init</h3>
+<ol>
+<li><code>sudo apt install python3-pip</code></li>
+<li><code>python3 -m venv env</code></li>
+<li><code>source bin/activate</code></li>
+</ol>
+<h4 id="requirementstx">requirements.tx</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># create</span>
+</span></span><span class="line"><span class="cl"><span class="n">pip3</span> <span class="n">freeze</span> <span class="o">--</span><span class="n">local</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># load</span>
+</span></span><span class="line"><span class="cl"><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="snippets">Snippets:</h2>
+<h4 id="ssh---paramiko">SSH - Paramiko</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">paramiko</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># \ndisplay ip interface brief | no-more</span>
+</span></span><span class="line"><span class="cl"><span class="n">iplist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;172.16.0.21&#39;</span><span class="p">,</span> <span class="s1">&#39;172.16.0.25&#39;</span><span class="p">,</span> <span class="s1">&#39;172.16.0.22&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">host</span> <span class="ow">in</span> <span class="n">iplist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;display int desc | no-more</span><span class="se">\n</span><span class="s1">display ip int br | no-more&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">promt</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ssh_client</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ssh_client</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ssh_client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;username_here&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;password_here&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;2135&#39;</span><span class="p">,</span><span class="n">look_for_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">ssh_client</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">promt</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out_byte</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out_str</span> <span class="o">=</span> <span class="n">out_byte</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ssh---netmiko---send_command-read">SSH - Netmiko - send_command (Read)</h4>
+<p>more example <a href="https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md" target="_blank" rel="noopener noreffer ">https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">netmiko</span> <span class="kn">import</span> <span class="n">ConnectHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># device type list: https://github.com/ktbyers/netmiko/blob/develop/PLATFORMS.md</span>
+</span></span><span class="line"><span class="cl"><span class="n">cisco1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;device_type&#34;</span><span class="p">:</span> <span class="s2">&#34;cisco_ios&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;cisco1.lasthop.io&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;pyclass&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;password&#34;</span><span class="p">:</span> <span class="n">getpass</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">command</span> <span class="o">=</span> <span class="s2">&#34;show ip int brief&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">ConnectHandler</span><span class="p">(</span><span class="o">**</span><span class="n">cisco1</span><span class="p">)</span> <span class="k">as</span> <span class="n">net_connect</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Use TextFSM to retrieve structured data</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">use_textfsm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">pprint</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ssh---netmiko---send_config_set-write">SSH - Netmiko - send_config_set (Write)</h4>
+<p>more example <a href="https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md" target="_blank" rel="noopener noreffer ">https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">config_commands</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;logging buffered 20000&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s1">&#39;logging buffered 20010&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s1">&#39;no logging console&#39;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_config_set</span><span class="p">(</span><span class="n">config_commands</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ssh---netmiko-expect_string">SSH - Netmiko expect_string</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">netmiko</span> <span class="kn">import</span> <span class="n">ConnectHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cisco1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;device_type&#34;</span><span class="p">:</span> <span class="s2">&#34;cisco_ios&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;cisco1.lasthop.io&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;pyclass&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;password&#34;</span><span class="p">:</span> <span class="n">getpass</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">command</span> <span class="o">=</span> <span class="s2">&#34;del flash:/test4.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">net_connect</span> <span class="o">=</span> <span class="n">ConnectHandler</span><span class="p">(</span><span class="o">**</span><span class="n">cisco1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CLI Interaction is as follows:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># cisco1#delete flash:/testb.txt</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Delete filename [testb.txt]?</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Delete flash:/testb.txt? [confirm]y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Use &#39;send_command&#39; and the &#39;expect_string&#39; argument (note, expect_string uses</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># RegEx patterns). Netmiko will move-on to the next command when the</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;expect_string&#39; is detected.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># strip_prompt=False and strip_command=False make the output</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># easier to read in this context.</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">command_string</span><span class="o">=</span><span class="n">command</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expect_string</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;Delete filename&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_command</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="o">+=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">command_string</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expect_string</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;confirm&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_command</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="o">+=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">command_string</span><span class="o">=</span><span class="s2">&#34;y&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expect_string</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;#&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_command</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">net_connect</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ssh---netmiko-send_command_timing-handle-prompt">SSH - Netmiko send_command_timing (Handle Prompt)</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">netmiko</span> <span class="kn">import</span> <span class="n">ConnectHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cisco1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;device_type&#34;</span><span class="p">:</span> <span class="s2">&#34;cisco_ios&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;cisco1.lasthop.io&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;pyclass&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;password&#34;</span><span class="p">:</span> <span class="n">getpass</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">command</span> <span class="o">=</span> <span class="s2">&#34;del flash:/test3.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">net_connect</span> <span class="o">=</span> <span class="n">ConnectHandler</span><span class="p">(</span><span class="o">**</span><span class="n">cisco1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CLI Interaction is as follows:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># cisco1#delete flash:/testb.txt</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Delete filename [testb.txt]?</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Delete flash:/testb.txt? [confirm]y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Use &#39;send_command_timing&#39; which is entirely delay based.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># strip_prompt=False and strip_command=False make the output</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># easier to read in this context.</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command_timing</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">command_string</span><span class="o">=</span><span class="n">command</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strip_command</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;Delete filename&#34;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">+=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command_timing</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">command_string</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strip_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strip_command</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;confirm&#34;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">+=</span> <span class="n">net_connect</span><span class="o">.</span><span class="n">send_command_timing</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">command_string</span><span class="o">=</span><span class="s2">&#34;y&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strip_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strip_command</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">net_connect</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="regex">Regex</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">string_example</span> <span class="o">=</span> <span class="s2">&#34;this is string&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">patern</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="sa">r</span><span class="s1">&#39;(.*\d{1,100}#.*)&#39;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">xx</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">patern</span><span class="p">,</span> <span class="n">string_example</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ntc--textfsm">NTC / TextFSM</h4>
+<p>[[ntc_template textfsm]]
+<a href="https://github.com/ramadlana/ntc-templates" target="_blank" rel="noopener noreffer ">https://github.com/ramadlana/ntc-templates</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ntc-templates
+</span></span><span class="line"><span class="cl">Unparsed data:
+</span></span><span class="line"><span class="cl">Interface                      Status         Protocol Description
+</span></span><span class="line"><span class="cl">Vl1                            admin down     down
+</span></span><span class="line"><span class="cl">Vl99                           up             up       10.20.99.0_Switch_mgmt_VLAN
+</span></span><span class="line"><span class="cl">Gi0/1                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/2                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/3                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/4                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/5                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/6                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/7                          down           down     D3 USER
+</span></span><span class="line"><span class="cl">Gi0/8                          up             up       MERAKI TEST AP
+</span></span><span class="line"><span class="cl">Gi0/9                          admin down     down
+</span></span><span class="line"><span class="cl">Gi0/10                         up             up       UPLINK TO TULCCD3S01P
+</span></span><span class="line"><span class="cl">Gi0/10.10                      deleted        down
+</span></span><span class="line"><span class="cl">Gi0/10.20                      up             up       Carrier VLAN
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TextFsm:
+</span></span><span class="line"><span class="cl">Value INTERFACE <span class="o">(</span><span class="se">\S</span>+<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Value STATUS <span class="o">(</span>up<span class="p">|</span>down<span class="p">|</span>admin down<span class="p">|</span>deleted<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Value PROTOCOL <span class="o">(</span><span class="se">\S</span>+<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Value DESCRIPTION <span class="o">(</span><span class="se">\S</span>.*?<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Begin
+</span></span><span class="line"><span class="cl">  ^Interface<span class="se">\.</span>*<span class="nv">$$</span> -&gt; Start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Start
+</span></span><span class="line"><span class="cl">  ^Interface.*<span class="nv">$$</span>
+</span></span><span class="line"><span class="cl">  ^<span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">STATUS</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">PROTOCOL</span><span class="si">}</span><span class="se">\s</span>+<span class="nv">$$</span> -&gt; Record
+</span></span><span class="line"><span class="cl">  ^<span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">STATUS</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">PROTOCOL</span><span class="si">}</span><span class="nv">$$</span> -&gt; Record
+</span></span><span class="line"><span class="cl">  ^<span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">STATUS</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">PROTOCOL</span><span class="si">}</span><span class="se">\s</span>+<span class="si">${</span><span class="nv">DESCRIPTION</span><span class="si">}</span><span class="nv">$$</span> -&gt; Record
+</span></span><span class="line"><span class="cl">  ^. -&gt; Error
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">https://pyneng.readthedocs.io/en/latest/book/21_textfsm/textfsm_examples.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/python-cheatsheet/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://ramalabs.my.id/python-cheatsheet/" data-title="Python get started for Network Engineer"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://ramalabs.my.id/python-cheatsheet/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://ramalabs.my.id/python-cheatsheet/" data-title="Python get started for Network Engineer" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://ramalabs.my.id/python-cheatsheet/" data-title="Python get started for Network Engineer"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://ramalabs.my.id/python-cheatsheet/" data-title="Python get started for Network Engineer"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/how-to-create-custom-service-systemd/" class="next" rel="next" title="How to Create Custom Service Systemd on Linux">How to Create Custom Service Systemd on Linux<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

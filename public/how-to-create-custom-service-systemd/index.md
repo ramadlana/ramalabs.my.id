@@ -1,13 +1,5 @@
----
-title: "How to Create Custom Service Systemd on Linux"
-date: 2023-02-16T10:18:49+07:00
-draft: false
-categories:
-  - linux
-tags:
-  - systemd
-  - linux
----
+# How to Create Custom Service Systemd on Linux
+
 
 ## Backgound:
 
@@ -64,3 +56,4 @@ WantedBy=multi-user.target
 5. ExecStart: Command to execute. You must specify full path to the executable. For example if our application is running using `java my_app.jar` you must specify `/usr/bin/java`. if you not sure where the executable is located you can run `which java` on terminal
 6. Standart Output and Standart Error: For logging purposes every your application returned value to user and every your application facing errors
 7. Multi-user.target: Normally defines a system state where all network services are started up and the system will accept logins, but a local GUI is not started.so for simplicity here the rule of thumb. Use multi-user.target if your application is not GUI and use graphical.target if your application is GUI
+

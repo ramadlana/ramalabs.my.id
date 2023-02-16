@@ -2,6 +2,9 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://example.org/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://ramalabs.my.id/how-to-create-custom-service-systemd/</loc><lastmod>2023-02-16T10:46:26&#43;07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ramalabs.my.id/posts/</loc><lastmod>2023-02-16T10:46:26&#43;07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ramalabs.my.id/</loc><lastmod>2023-02-16T10:46:26&#43;07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ramalabs.my.id/python-cheatsheet/</loc><lastmod>2023-02-16T10:02:12&#43;07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ramalabs.my.id/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://ramalabs.my.id/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

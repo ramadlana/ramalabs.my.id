@@ -86,7 +86,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   # Header config
   [params.header]
     # desktop header mode ["fixed", "normal", "auto"]
-    desktopMode = "auto"
+    desktopMode = "fixed"
     # mobile header mode ["fixed", "normal", "auto"]
     mobileMode = "auto"
     #  Header title config
@@ -308,7 +308,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # whether to enable the table of the contents
       enable = true
       #  whether to keep the static table of the contents in front of the post
-      keepStatic = false
+      keepStatic = true
       # whether to make the table of the contents in the sidebar automatically collapsed
       auto = false
     #  KaTeX mathematical formulas

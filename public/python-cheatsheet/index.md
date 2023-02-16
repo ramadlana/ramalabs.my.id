@@ -1,8 +1,5 @@
----
-title: "Python get started for Network Engineer"
-date: 2023-02-16T05:42:43+07:00
-draft: false
----
+# Python get started for Network Engineer
+
 
 ### Init
 
@@ -243,3 +240,4 @@ Start
 https://pyneng.readthedocs.io/en/latest/book/21_textfsm/textfsm_examples.html
 
 ```
+

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>How to Create Custom Service Systemd on Linux - RamaLabs</title><meta name="Description" content="Code, Cloud, Networking, Business and Life"><meta property="og:title" content="How to Create Custom Service Systemd on Linux" />
+<meta property="og:description" content="Backgound: As developers, we often want to create an service system that can run on background and then launch a service every system startup. These sevice can be anything, maybe you have python scripts, bash scripts, or node js script, or maybe like this example we create a custome service for Metabase (https://www.metabase.com/start/).
+Metabase can be launched from user terminal by typing java -jar metabase.jar but every user logout or close the terminal metabase will stopped immediately." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ramalabs.my.id/how-to-create-custom-service-systemd/" /><meta property="og:image" content="https://ramalabs.my.id/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-16T10:18:49+07:00" />
+<meta property="article:modified_time" content="2023-02-16T10:46:26+07:00" /><meta property="og:site_name" content="Ramalabs" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://ramalabs.my.id/logo.png"/>
+
+<meta name="twitter:title" content="How to Create Custom Service Systemd on Linux"/>
+<meta name="twitter:description" content="Backgound: As developers, we often want to create an service system that can run on background and then launch a service every system startup. These sevice can be anything, maybe you have python scripts, bash scripts, or node js script, or maybe like this example we create a custome service for Metabase (https://www.metabase.com/start/).
+Metabase can be launched from user terminal by typing java -jar metabase.jar but every user logout or close the terminal metabase will stopped immediately."/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://ramalabs.my.id/how-to-create-custom-service-systemd/" /><link rel="prev" href="https://ramalabs.my.id/python-cheatsheet/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How to Create Custom Service Systemd on Linux",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/ramalabs.my.id\/how-to-create-custom-service-systemd\/"
+        },"genre": "posts","wordcount":  335 ,
+        "url": "https:\/\/ramalabs.my.id\/how-to-create-custom-service-systemd\/","datePublished": "2023-02-16T10:18:49+07:00","dateModified": "2023-02-16T10:46:26+07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Hidayah Ramadlana"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="RamaLabs">Ramalabs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="RamaLabs">Ramalabs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">How to Create Custom Service Systemd on Linux</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="mailto:hidayah.ramadlana@gmail.com" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Hidayah Ramadlana</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-16">2023-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;335 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#backgound">Backgound:</a></li>
+    <li><a href="#goal">Goal:</a></li>
+    <li><a href="#step-1-goto-systemd-folder">Step 1: Goto systemd folder</a></li>
+    <li><a href="#step-2">Step 2:</a></li>
+    <li><a href="#step-3">Step 3:</a>
+      <ul>
+        <li><a href="#explanation">Explanation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="backgound">Backgound:</h2>
+<p>As developers, we often want to create an service system that can run on background and then launch a service every system startup. These sevice can be anything, maybe you have python scripts, bash scripts, or node js script, or maybe like this example we create a custome service for Metabase (<a href="https://www.metabase.com/start/%29" target="_blank" rel="noopener noreffer ">https://www.metabase.com/start/)</a>.</p>
+<p>Metabase can be launched from user terminal by typing <code>java -jar metabase.jar</code> but every user logout or close the terminal metabase will stopped immediately.</p>
+<h2 id="goal">Goal:</h2>
+<p>Our goal is simple we want to create services for Metabase then control it using systemd for example <code>systemctl start metabase.service</code></p>
+<h2 id="step-1-goto-systemd-folder">Step 1: Goto systemd folder</h2>
+<p>Find your user defined services. Ubuntu was at <code>/etc/systemd/system/</code></p>
+<h2 id="step-2">Step 2:</h2>
+<p>Create a text file with your favorite text editor name it <code>whatever_you_want.service</code></p>
+<h2 id="step-3">Step 3:</h2>
+<p>Put following <strong>Template</strong> to the file <code>whatever_you_want.service</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>Metabase Daemon
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PIDFile</span><span class="o">=</span>/run/metabase.pid
+</span></span><span class="line"><span class="cl"><span class="nv">WorkingDirectory</span><span class="o">=</span>/usr/local/bin/metabase/
+</span></span><span class="line"><span class="cl"><span class="nv">User</span><span class="o">=</span>ubuntu
+</span></span><span class="line"><span class="cl"><span class="nv">Group</span><span class="o">=</span>ubuntu
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#RUN COMMAND HERE</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/java -jar -Xmx512m /usr/local/bin/metabase/metabase.jar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">Restart</span><span class="o">=</span>on-failure
+</span></span><span class="line"><span class="cl"><span class="nv">RestartSec</span><span class="o">=</span><span class="m">30</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">StandardOutput</span><span class="o">=</span>file:/var/log/sf-app.log
+</span></span><span class="line"><span class="cl"><span class="nv">StandardError</span><span class="o">=</span>file:/var/log/sf-app.err.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="explanation">Explanation</h3>
+<ol>
+<li>Unit: Every service is called unit and give description with name for this example is Metabase Daemon</li>
+<li>PID: process identifier, and location is on /run folder.</li>
+<li>Working directory: Where your application folder is located</li>
+<li>User &amp; Group: user and group your operating system</li>
+<li>ExecStart: Command to execute. You must specify full path to the executable. For example if our application is running using <code>java my_app.jar</code> you must specify <code>/usr/bin/java</code>. if you not sure where the executable is located you can run <code>which java</code> on terminal</li>
+<li>Standart Output and Standart Error: For logging purposes every your application returned value to user and every your application facing errors</li>
+<li>Multi-user.target: Normally defines a system state where all network services are started up and the system will accept logins, but a local GUI is not started.so for simplicity here the rule of thumb. Use multi-user.target if your application is not GUI and use graphical.target if your application is GUI</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/how-to-create-custom-service-systemd/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://ramalabs.my.id/how-to-create-custom-service-systemd/" data-title="How to Create Custom Service Systemd on Linux"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://ramalabs.my.id/how-to-create-custom-service-systemd/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://ramalabs.my.id/how-to-create-custom-service-systemd/" data-title="How to Create Custom Service Systemd on Linux" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://ramalabs.my.id/how-to-create-custom-service-systemd/" data-title="How to Create Custom Service Systemd on Linux"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://ramalabs.my.id/how-to-create-custom-service-systemd/" data-title="How to Create Custom Service Systemd on Linux"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/python-cheatsheet/" class="prev" rel="prev" title="Python get started for Network Engineer"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python get started for Network Engineer</a></div>
+</div>
+</article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
