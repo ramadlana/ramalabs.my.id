@@ -9,13 +9,15 @@ tags:
   - linux
 ---
 
-## Backgound:
+## Summary:
+
+### Background
 
 As developers, we often want to create an service system that can run on background and then launch a service every system startup. These sevice can be anything, maybe you have python scripts, bash scripts, or node js script, or maybe like this example we create a custome service for Metabase (https://www.metabase.com/start/).
 
 Metabase can be launched from user terminal by typing `java -jar metabase.jar` but every user logout or close the terminal metabase will stopped immediately.
 
-## Goal:
+### Goal:
 
 Our goal is simple we want to create services for Metabase then control it using systemd for example `systemctl start metabase.service`
 
@@ -23,11 +25,11 @@ Our goal is simple we want to create services for Metabase then control it using
 
 Find your user defined services. Ubuntu was at `/etc/systemd/system/`
 
-## Step 2:
+## Step 2: Create .service files
 
 Create a text file with your favorite text editor name it `whatever_you_want.service`
 
-## Step 3:
+## Step 3: .service example
 
 Put following **Template** to the file `whatever_you_want.service`
 
@@ -55,7 +57,7 @@ StandardError=file:/var/log/sf-app.err.log
 WantedBy=multi-user.target
 ```
 
-### Explanation
+## Explanation
 
 1. Unit: Every service is called unit and give description with name for this example is Metabase Daemon
 2. PID: process identifier, and location is on /run folder.

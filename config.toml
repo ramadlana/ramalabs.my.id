@@ -51,7 +51,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     title = ""
 
   [[menu.main]]
-    weight = 1
+    weight = 2
     identifier = "posts"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
@@ -62,7 +62,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     # title will be shown when you hover on this menu link
     title = ""
   [[menu.main]]
-    weight = 2
+    weight = 3
     identifier = "tags"
     pre = ""
     post = ""
@@ -70,12 +70,20 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     url = "/tags/"
     title = ""
   [[menu.main]]
-    weight = 3
+    weight = 4
     identifier = "categories"
     pre = ""
     post = ""
     name = "Categories"
     url = "/categories/"
+    title = ""
+  [[menu.main]]
+    weight = 5
+    identifier = "portofolio"
+    pre = ""
+    post = ""
+    name = "Portofolio"
+    url = "/portofolio"
     title = ""
 
 [params]
@@ -106,7 +114,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # URL of the LOGO
       logo = ""
       # title name
-      name = ""
+      name = "Rama Labs"
       # you can add extra information before the name (HTML format is supported), such as icons
       pre = ""
       # you can add extra information after the name (HTML format is supported), such as icons
@@ -199,9 +207,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # URL of avatar shown in home page
       avatarURL = "/image/rama.jpeg"
       #  title shown in home page (HTML format is supported)
-      title = "RamaLabs"
+      title = "Hidayah Ramadlana"
       # subtitle shown in home page (HTML format is supported)
-      subtitle = "Hidayah Ramadlana blog"
+      subtitle = "Network Engineer | Full stack developers | Cloud Engineer"
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
