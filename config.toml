@@ -4,7 +4,7 @@ baseURL = "https://ramalabs.my.id"
 theme = "LoveIt"
 
 # website title
-title = "RamaLabs"
+title = ""
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en"
@@ -38,6 +38,18 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
 # Menu config
 [menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "home"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    name = "Home"
+    url = "/"
+    # title will be shown when you hover on this menu link
+    title = ""
+
   [[menu.main]]
     weight = 1
     identifier = "posts"
@@ -77,7 +89,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   #  date format
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
-  title = "Ramalabs"
+  title = ""
   # website description for RSS, SEO, Open Graph and Twitter Cards
   description = "Code, Cloud, Networking, Business and Life"
   # website images for Open Graph and Twitter Cards
@@ -94,7 +106,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # URL of the LOGO
       logo = ""
       # title name
-      name = "Ramalabs"
+      name = ""
       # you can add extra information before the name (HTML format is supported), such as icons
       pre = ""
       # you can add extra information after the name (HTML format is supported), such as icons
@@ -185,11 +197,11 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      #avatarURL = "/images/avatar.png"
+      avatarURL = "/image/rama.jpeg"
       #  title shown in home page (HTML format is supported)
       title = "RamaLabs"
       # subtitle shown in home page (HTML format is supported)
-      subtitle = "Rama Notes"
+      subtitle = "Hidayah Ramadlana blog"
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
@@ -207,8 +219,8 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   # Social config about the author
   [params.social]
-    GitHub = ""
-    Linkedin = ""
+    GitHub = "https://github.com/ramadlana"
+    Linkedin = "https://www.linkedin.com/in/ramadlana/"
     Twitter = ""
     Instagram = ""
     Facebook = ""
@@ -280,7 +292,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     HackTheBox = ""
     RootMe= ""
     Phone = ""
-    Email = ""
+    Email = "hidayah.ramadlana@gmail.com"
     RSS = true # 
 
   #  Page global config
