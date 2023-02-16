@@ -1,7 +1,7 @@
 ---
 title: "Python get started for Network Engineer"
 date: 2023-02-16T05:42:43+07:00
-draft: true
+draft: false
 ---
 
 # Python Cheatsheet
